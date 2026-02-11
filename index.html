@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html>
 <head>
     <title>aswith is my best friend</title>
@@ -70,17 +70,6 @@
             background: #ffdde1;
         }
 
-        #message {
-            margin-top: 15px;
-            font-weight: bold;
-            opacity: 0;
-            transition: 0.5s;
-        }
-
-        .show {
-            opacity: 1 !important;
-        }
-
         /* Floating Hearts */
         .heart {
             position: absolute;
@@ -94,13 +83,25 @@
                 transform: translateY(100vh);
                 opacity: 0;
             }
-            50% {
-                opacity: 1;
-            }
+            50% { opacity: 1; }
             100% {
                 transform: translateY(-10vh);
                 opacity: 0;
             }
+        }
+
+        /* Scary Animations */
+        @keyframes shake {
+            0% { transform: translateX(-15px); }
+            25% { transform: translateX(15px); }
+            50% { transform: translateX(-15px); }
+            75% { transform: translateX(15px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes flash {
+            from { background: black; }
+            to { background: darkred; }
         }
 
     </style>
@@ -122,7 +123,6 @@
         </p>
 
         <button onclick="showMessage()">Click for Surprise 🎁</button>
-        <div id="message">Forever Friends 💕</div>
     </div>
 
     <!-- Floating Hearts -->
@@ -134,7 +134,36 @@
 
     <script>
         function showMessage() {
-            document.getElementById("message").classList.add("show");
+
+            // 🔴 CHANGE THIS TEXT TO ANYTHING YOU WANT
+            let scaryText = "BOOOOOO!!! 👻";
+
+            let overlay = document.createElement("div");
+            overlay.style.position = "fixed";
+            overlay.style.top = "0";
+            overlay.style.left = "0";
+            overlay.style.width = "100%";
+            overlay.style.height = "100%";
+            overlay.style.background = "black";
+            overlay.style.display = "flex";
+            overlay.style.justifyContent = "center";
+            overlay.style.alignItems = "center";
+            overlay.style.zIndex = "9999";
+            overlay.style.animation = "flash 0.15s alternate 8";
+
+            let text = document.createElement("h1");
+            text.innerText = scaryText;
+            text.style.color = "red";
+            text.style.fontSize = "90px";
+            text.style.textShadow = "0 0 40px red";
+            text.style.animation = "shake 0.2s infinite";
+
+            overlay.appendChild(text);
+            document.body.appendChild(overlay);
+
+            setTimeout(() => {
+                overlay.remove();
+            }, 2000);
         }
     </script>
 
