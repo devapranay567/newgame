@@ -1,80 +1,143 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mini Click Game</title>
+    <title>aswith is my best friend</title>
+
     <style>
         body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #141e30, #243b55);
-            color: white;
             margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #ff6a00, #ee0979, #00c9ff, #92fe9d);
+            background-size: 400% 400%;
+            animation: gradientMove 10s ease infinite;
             overflow: hidden;
         }
 
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            width: 400px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         h1 {
-            margin-top: 20px;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px white;
         }
 
-        #gameArea {
-            position: relative;
-            width: 100vw;
-            height: 80vh;
-            border: 2px solid white;
-            margin-top: 20px;
+        p {
+            font-size: 18px;
+            line-height: 1.6;
         }
 
-        #box {
-            width: 60px;
-            height: 60px;
-            background-color: red;
-            position: absolute;
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
             cursor: pointer;
-            border-radius: 10px;
+            background: white;
+            color: #ee0979;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        #score {
-            font-size: 20px;
-            margin-top: 10px;
+        button:hover {
+            transform: scale(1.1);
+            background: #ffdde1;
         }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .show {
+            opacity: 1 !important;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-<h1>🎮 Click The Box Game</h1>
-<div id="score">Score: 0</div>
+    <div class="card">
+        <h1>💖 Aswith is My Best Friend 💖</h1>
 
-<div id="gameArea">
-    <div id="box"></div>
-</div>
+        <p>
+            Friendship is not about who you've known the longest.
+            It's about who walked into your life and said,
+            “I'm here for you” — and proved it.
+        </p>
 
-<script>
-    const box = document.getElementById("box");
-    const gameArea = document.getElementById("gameArea");
-    const scoreText = document.getElementById("score");
+        <p>
+            Aswith is my best friend, my support system,
+            my laughter partner, and my forever brother.
+        </p>
 
-    let score = 0;
+        <button onclick="showMessage()">Click for Surprise 🎁</button>
+        <div id="message">Forever Friends 💕</div>
+    </div>
 
-    function moveBox() {
-        const maxX = gameArea.clientWidth - box.clientWidth;
-        const maxY = gameArea.clientHeight - box.clientHeight;
+    <!-- Floating Hearts -->
+    <div class="heart" style="left:10%;">❤️</div>
+    <div class="heart" style="left:30%; animation-delay:2s;">❤️</div>
+    <div class="heart" style="left:50%; animation-delay:4s;">❤️</div>
+    <div class="heart" style="left:70%; animation-delay:1s;">❤️</div>
+    <div class="heart" style="left:90%; animation-delay:3s;">❤️</div>
 
-        const randomX = Math.floor(Math.random() * maxX);
-        const randomY = Math.floor(Math.random() * maxY);
-
-        box.style.left = randomX + "px";
-        box.style.top = randomY + "px";
-    }
-
-    box.addEventListener("click", function() {
-        score++;
-        scoreText.textContent = "Score: " + score;
-        moveBox();
-    });
-
-    // Initial position
-    moveBox();
-</script>
+    <script>
+        function showMessage() {
+            document.getElementById("message").classList.add("show");
+        }
+    </script>
 
 </body>
 </html>
+
